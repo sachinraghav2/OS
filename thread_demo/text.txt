@@ -1,0 +1,47 @@
+
+thread_demo.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <thread>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	48 83 ec 10          	sub    $0x10,%rsp
+   8:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+   c:	bf 00 00 00 00       	mov    $0x0,%edi
+  11:	e8 00 00 00 00       	callq  16 <thread+0x16>
+  16:	90                   	nop
+  17:	c9                   	leaveq 
+  18:	c3                   	retq   
+
+0000000000000019 <main>:
+  19:	55                   	push   %rbp
+  1a:	48 89 e5             	mov    %rsp,%rbp
+  1d:	48 83 ec 10          	sub    $0x10,%rsp
+  21:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  28:	00 00 
+  2a:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+  2e:	31 c0                	xor    %eax,%eax
+  30:	bf 00 00 00 00       	mov    $0x0,%edi
+  35:	e8 00 00 00 00       	callq  3a <main+0x21>
+  3a:	48 8d 45 f0          	lea    -0x10(%rbp),%rax
+  3e:	b9 00 00 00 00       	mov    $0x0,%ecx
+  43:	ba 00 00 00 00       	mov    $0x0,%edx
+  48:	be 00 00 00 00       	mov    $0x0,%esi
+  4d:	48 89 c7             	mov    %rax,%rdi
+  50:	e8 00 00 00 00       	callq  55 <main+0x3c>
+  55:	bf 00 00 00 00       	mov    $0x0,%edi
+  5a:	e8 00 00 00 00       	callq  5f <main+0x46>
+  5f:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  63:	be 00 00 00 00       	mov    $0x0,%esi
+  68:	48 89 c7             	mov    %rax,%rdi
+  6b:	e8 00 00 00 00       	callq  70 <main+0x57>
+  70:	b8 00 00 00 00       	mov    $0x0,%eax
+  75:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+  79:	64 48 33 14 25 28 00 	xor    %fs:0x28,%rdx
+  80:	00 00 
+  82:	74 05                	je     89 <main+0x70>
+  84:	e8 00 00 00 00       	callq  89 <main+0x70>
+  89:	c9                   	leaveq 
+  8a:	c3                   	retq   

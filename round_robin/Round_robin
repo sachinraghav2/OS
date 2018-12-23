@@ -1,0 +1,29 @@
+;copy SP of task1/task2/task3
+ in temp,spl
+  in temp1,sph
+ ;idenfitfy task and change SP accordingly
+scheduler:
+ lds temp2,CPTRadd
+ cpi temp2,1
+ breq to_task1
+ cpi temp2,2
+ breq to_task2
+to_task2:
+  ;update task1 stack pointer
+  sts SP1Ladd,temp
+  sts SP1Hadd,temp1
+  ;make SP point to task2 stack
+  lds temp,SP2Ladd
+  out spl,temp
+  lds temp,SP2Hadd
+  out sph,temp
+  rjmp restore
+to_task1:
+  ;update task2 stack pointer
+  sts SP2Ladd,temp
+  sts SP2Hadd,temp1
+  ;make SP point to task1 stack
+  lds temp,SP1Ladd
+  out spl,temp
+  lds temp,SP1Hadd
+  out sph,temp
